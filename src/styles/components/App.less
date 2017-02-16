@@ -1,0 +1,215 @@
+html, body {
+  // source: alerts app
+  // This block is needed to disable scrolling of the main <body> element.
+  overflow: hidden;
+  height: 100%;
+  font-weight:        lighter;
+  font-family:		sans-serif;
+  margin:             0em;
+}
+
+body {
+  font-family: @fontFamily;
+  margin: 0;
+  padding: 0; /*http://stackoverflow.com/questions/22948843/why-is-my-header-getting-covered-by-nav-bar-bootstrap*/
+}
+
+.container-fluid {
+  margin: 0 auto;
+  padding: 0 0 0 0 !important;
+}
+
+#app-container > div {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#main-section {
+  background:@mainSectionBackgroundColor;
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: row;
+}
+
+#main-content {
+  flex: 1;
+  margin: 5px 5px 0 5px;
+  padding: 0 0 58px 0;
+  overflow-x: hidden;
+  height: 95vh;
+}
+
+#main-header {
+  flex: 0 0 50px;
+  background-color: @mainHeaderBackgroundColor;
+  .app-title {
+    font-size: 24px;
+    font-weight: lighter;
+    color: @appTitleColor;
+    line-height: 3;
+    margin: -1px 20px 0 0;
+  }
+}
+
+footer {
+  position: absolute;
+  bottom: 0px;
+  height: 50px;
+  width: 100%;
+  background:white;
+  flex: 0 0 50px;
+  line-height: 3.5;
+  padding: 0 10px 0 10px;
+  box-shadow: 0px 0px 3px rgba(0,0,0,.8);
+}
+
+#main-sidebar {
+  background:black;
+  flex: 0 0 180px; //width of sidebar
+  order: -1;
+
+  //border: 2px solid red;
+  //z-index: 9999;
+
+  .sidebar {
+    /* Sidebar Styles */
+
+    .sidebar-menu {
+      position: absolute;
+      top: 70px;
+      left: 0px;
+
+      margin: 5px 0 0 0;
+      padding: 0;
+      list-style: none;
+
+      li {
+        line-height: 40px;
+        width: 180px;
+        padding: 5px;
+        margin: 0;
+
+        box-sizing:border-box;
+
+        &.active {
+          border-left: 2px solid @textColor !important;
+          a {
+            color: white;
+          }
+        }
+
+        a {
+          display: block;
+          text-decoration: none;
+          color: fade(white, 80%);
+          margin: 2px 0 0 5px;
+          cursor: pointer;
+
+          box-sizing:border-box;
+
+          font-size:15px;
+
+          i {
+            margin-right: 10px;
+            font-size: 20px;
+          }
+        }
+
+        a:hover {
+          text-decoration: none;
+          color: #fff;
+          //background: rgba(255,255,255,0.2);
+        }
+
+        a:active,
+        a:focus {
+          text-decoration: none;
+        }
+      }
+    }
+
+    .sidebar-menu > .sidebar-brand {
+      height: 65px;
+      font-size: 18px;
+      line-height: 60px;
+    }
+
+    .sidebar-menu > .sidebar-brand a {
+      color: #999999;
+    }
+
+    .sidebar-menu > .sidebar-brand a:hover {
+      color: #fff;
+      background: none;
+    }
+
+  }
+}
+
+#responsive-menu{
+  display: none;
+}
+
+@media (max-width: 768px) {
+
+  #main-sidebar {
+    display: none;
+  }
+  #responsive-menu {
+    display: flex;
+    background-color: black;
+    flex-direction: row;
+    list-style: none;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    margin-bottom: 5px;
+
+    .sidebar-menu {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      li {
+        float: left;
+
+        padding: 5px; //5px 0 5px 0;
+        margin: 0;
+
+        box-sizing:border-box;
+
+        &.active {
+
+          a {
+            border-bottom: 2px solid @textColor !important;
+            color: white;
+          }
+        }
+
+        a {
+          display: block;
+          text-decoration: none;
+          color: fade(white, 80%);
+          margin: 2px 0 0 5px;
+          cursor: pointer;
+
+          box-sizing:border-box;
+
+          span {
+            display: none;
+          }
+        }
+
+        a:hover {
+          text-decoration: none;
+          color: #fff;
+          //background: rgba(255,255,255,0.2);
+        }
+
+        a:active, li a:focus {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}

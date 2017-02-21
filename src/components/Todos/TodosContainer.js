@@ -15,12 +15,18 @@ class TodosContainer extends Component{
         this.onDeleteToDo = this.onDeleteToDo.bind(this);
     }
 
+    componentDidMount() {
+      this.props.getTodos();
+    }
+
     onTodoStatusChange (todo) {
         this.props.onTodoStatusChange(todo);
     };
 
     onDeleteToDo (id) {
-      this.props.onDeleteToDo(id);
+      if(confirm('Are you sure you want to permanently remove this todo ?')) {
+        this.props.onDeleteToDo(id);
+      }
     };
 
     render(){

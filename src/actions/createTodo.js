@@ -1,5 +1,6 @@
 import * as ACTION from './actionTypes';
 import {reset} from 'redux-form';
+import {postWithToken} from '../utils/query';
 
 
 const addTodo = (todo) => {
@@ -12,11 +13,8 @@ const addTodo = (todo) => {
 //redux-thunk...
 const createTodo =(todo) => {
   return (dispatch, getState) => {
-    //simulate a network call
-    return new Promise((resolve, reject) =>{
-      dispatch(addTodo(todo));
-      resolve();
-    }).then(() =>{
+    return postWithToken('/api/todos', todo, dispatch, getState).then((response) => {
+      dispatch(addTodo(response.data));
       dispatch(reset('addTodo'));
     });
 

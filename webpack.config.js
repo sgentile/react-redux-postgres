@@ -11,6 +11,8 @@ const validate = require('webpack-validator');
 const TARGET = process.env.npm_lifecycle_event;
 const PRODUCTION = process.env.NODE_ENV === 'production';
 
+console.log(PRODUCTION);
+
 
 const ASSETS_LIMIT = 8192; // Threshold for generating inline base64 URLs
 const COPYRIGHT_NOTICE = 'Copyright ' + new Date().getFullYear() + ' YOUR COMPANY NAME HERE. ALL RIGHTS RESERVED.';
@@ -47,7 +49,7 @@ const config = {
         // , new webpack.ProvidePlugin({
         //     $: "jquery",
         //     jQuery: "jquery",
-        //     "window.jQuery": "jquery",
+        //        "window.jQuery": "jquery",
         //     "window.$": "jquery"
         // })
 
@@ -224,7 +226,7 @@ else { /* DEVELOPMENT */
             })
     );
 
-
+    config.devtool = 'inline-source-map';
     config.devServer = {
 
         // Root folder to server static content.  If you copy
@@ -240,9 +242,8 @@ else { /* DEVELOPMENT */
         hot: true,
         inline: true,
         port: 8080,
-        /* todo: this will be updated once we get the api in place: */
         proxy: {
-            '/api*' : {
+            '/api' : {
                 target: 'http://localhost:8000',
                 secure: false
             }

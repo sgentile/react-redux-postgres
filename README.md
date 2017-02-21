@@ -34,3 +34,30 @@
 
 - `npm run dev` will run dev with tests watch
 
+## Running docker
+
+docker build -t sgentile/node-web-app .
+
+image will then be listed by docker:   docker images
+
+# Run the image
+
+docker run -d -p 8000:8000 -v $(pwd):/usr/src/app  --name node-web-app sgentile/node-web-app
+
+
+## Print the output of your app
+
+# Get container Id
+
+docker ps
+
+#print app output
+
+docker logs <container_id>
+
+# to go inside the container:
+
+docker exec -it <container_id> /bin/bash
+
+
+

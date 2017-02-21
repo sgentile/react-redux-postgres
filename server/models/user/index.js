@@ -50,8 +50,10 @@ exports.register = (server, options, next) => {
                 tags: ['api'],
                 validate: {
                     payload: {
+                        username: Joi.string().required(),
+                        password: Joi.string().required(),
                         name: Joi.string().required(),
-                        password: Joi.string().required()
+                        email: Joi.string().required()
                     }
                 }
             },
@@ -59,7 +61,12 @@ exports.register = (server, options, next) => {
                 const salt = bcrypt.genSaltSync(10);
                 const password = bcrypt.hashSync(request.payload.password, salt);
 
-                return new User({name: request.payload.name, password}).save().then(reply, reject(reply));
+                return new User({
+                    username: request.payload.username,
+                    password,
+                    name: request.payload.name,
+                    email: request.payload.email
+                }).save().then(reply, reject(reply));
             }
         },
         {
@@ -70,7 +77,7 @@ exports.register = (server, options, next) => {
                 tags: ['api'],
                 validate: {
                     payload: {
-                        name: Joi.string().required(),
+                        username: Joi.string().required(),
                         password: Joi.string().required()
                     }
                 }
@@ -82,7 +89,7 @@ exports.register = (server, options, next) => {
 
                     let user;
 
-                    return new User({name: request.payload.name}).fetch().then((u) => {
+                    return new User({username: request.payload.username}).fetch().then((u) => {
                         user = u;
                         if (user) {
                             return bcrypt.compare(request.payload.password, user.get('password'));

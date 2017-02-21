@@ -16,10 +16,10 @@ exports.register = (server, options, next) => {
     server.route([
         {
             method: 'GET',
-            path: '/api/todos',
+            path: '/api/todos/user',
             config: {auth: 'jwt'},
             handler: (request, reply) => {
-                new Todo().fetchAll().then(reply, reject(reply));
+                new Todo({user_id:request.auth.credentials.user.id}).fetchAll().then(reply, reject(reply));
             }
         },
         {
@@ -38,6 +38,7 @@ exports.register = (server, options, next) => {
                 new Todo({
                     name: request.payload.name,
                     completed: false,
+                    date: new Date(),
                     user_id
                 }).save().then(reply, reject(reply));
             }
@@ -51,8 +52,16 @@ exports.register = (server, options, next) => {
                     id: request.payload.id,
                     name: request.payload.name,
                     completed: request.payload.completed,
+                    date: new Date(),
                     user_id
                 }).save().then(reply, reject(reply));
+            }
+        },
+        {
+            method: 'DELETE',
+            path: '/api/todos/{id}',
+            handler: (request, reply) => {
+                new Todo({id:request.params.id}).destroy().then(reply, reject(reply));
             }
         }
     ]);

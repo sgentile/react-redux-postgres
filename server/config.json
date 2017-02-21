@@ -6,7 +6,7 @@
             "port" : 32768,
             "user" : "postgres",
             "password": "",
-            "database" : "dbTest"
+            "database" : "dbTodos"
         }
     },
     "privateKey": "NeverShareYourSecret",

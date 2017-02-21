@@ -22,6 +22,7 @@ export default class Todos extends Component {
 
   onCompletedChanged(todo) {
     console.log('onCompletedChanged', todo);
+    todo.completed = !todo.completed;
     this.props.onTodoStatusChange(todo)
   };
 

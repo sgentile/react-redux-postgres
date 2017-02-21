@@ -1,9 +1,13 @@
 import React from 'react';
 import {Link} from 'react-router';
 
-const Header = () => (
+const Header = ({authState, logout}) => (
     <nav id="main-header" >
-        <Link to={'/'} className="pull-right app-title">React Redux</Link>
+        {authState && authState.isAuthenticated &&
+          <a href="" className="pull-right app-user" onClick={logout.bind(this)}>{authState.name}</a>
+        }
+        <Link to={'/'} className="app-title">React Redux</Link>
+
     </nav>
 );
 

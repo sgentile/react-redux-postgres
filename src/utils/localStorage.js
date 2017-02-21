@@ -25,3 +25,7 @@ export const saveState = (state) =>   {
     console.log('error saving state', err);
   }
 };
+
+export const getToken = () => {
+  return localStorage.getItem('token');
+};

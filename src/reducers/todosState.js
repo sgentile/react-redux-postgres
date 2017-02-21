@@ -12,7 +12,9 @@ const todosState = (state = initialState, action) => {
     console.log(state);
     switch(action.type){
         case  ACTION.LOAD_TODOS: {
-            return Object.assign({}, state);
+          return Object.assign({}, state, {
+              todos: [...action.todos]
+            });
         }
 
         case ACTION.ADD_TODO: {
@@ -41,7 +43,8 @@ const todosState = (state = initialState, action) => {
             return Object.assign({}, state, {
                 todos: state.todos.map((item) => {
                     if(item.id === action.todo.id){
-                        return Object.assign({}, item, {completed: !action.todo.completed});
+                        //return Object.assign({}, item, {completed: !action.todo.completed});
+                      return Object.assign({}, item, action.todo);
                     }
                     return item;
                 })

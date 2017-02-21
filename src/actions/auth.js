@@ -77,28 +77,28 @@ export function loginUser() {
   }
 }
 
-// export function registrationUserSuccess(user) {
-//   return {
-//     type: ACTION.USER_REGISTRATION_SUCCESS,
-//     user
-//   }
-// }
-//
-// export function registrationUserFailure(error) {
-//   return {
-//     type: ACTION.USER_REGISTRATION_FAILED,
-//     error
-//   }
-// }
-//
-// export function registerUser() {
-//   return function (dispatch, getState) {
-//     const form = getState().form;
-//     return axios.post('/api/register', form.login.values)
-//       .then((response) => {
-//         dispatch(registrationUserSuccess(response.data));
-//       }, (error) => {
-//         dispatch(registrationUserFailure(error));
-//       });
-//   }
-// }
+export function registrationUserSuccess(user) {
+  return {
+    type: ACTION.USER_REGISTRATION_SUCCESS,
+    user
+  }
+}
+
+export function registrationUserFailure(error) {
+  return {
+    type: ACTION.USER_REGISTRATION_FAILED,
+    error
+  }
+}
+
+export function registerUser() {
+  return function (dispatch, getState) {
+    const form = getState().form;
+    return axios.post('/api/register', form.login.values)
+      .then((response) => {
+        dispatch(registrationUserSuccess(response.data));
+      }, (error) => {
+        dispatch(registrationUserFailure(error));
+      });
+  }
+}

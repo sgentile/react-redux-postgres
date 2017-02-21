@@ -5,7 +5,7 @@ const initialState = {
   token: null,
   name: null,
   isAdmin: false,
-  pendingAuthorization: false,
+  registered: false,
   isAuthenticated: false,
   isAuthenticating: false,
   statusText: null,
@@ -29,9 +29,10 @@ const authState = (state = initialState, action) => {
         hasError: false,
         token: null,
         name: null,
-        pendingAuthorization: true,
+        registered: true,
         isAdmin: false,
-        statusText: 'Successfully Registered : Awaiting Admin Authorization.'
+        //statusText: 'Successfully Registered : Awaiting Admin Authorization.'
+        statusText: 'Successfully Registered. Please sign in with your new account.'
       });
     }
 
@@ -43,7 +44,7 @@ const authState = (state = initialState, action) => {
         hasError: true,
         token: null,
         name: null,
-        pendingAuthorization: true,
+        registered: false,
         isAdmin: false,
         statusText: error
       });
@@ -56,7 +57,7 @@ const authState = (state = initialState, action) => {
         hasError: true,
         token: null,
         name: null,
-        pendingAuthorization: true,
+        registered: true,
         isAdmin: false,
         statusText: 'Authorization Error: This account has not been authorized'
       });
@@ -70,7 +71,7 @@ const authState = (state = initialState, action) => {
         hasError: false,
         token: action.payload.token,
         name: token.user.name,
-        pendingAuthorization: token.pendingAuthorization || false,
+        registered: true,
         isAdmin: token.isAdmin || false,
         statusText: 'You have been successfully logged in.'
       });
@@ -83,7 +84,7 @@ const authState = (state = initialState, action) => {
         hasError: true,
         token: null,
         name: null,
-        pendingAuthorization: false,
+        registered: false,
         isAdmin: false,
         statusText: `Authentication Error: ${action.payload.status} ${action.payload.statusText}`
       });
@@ -96,7 +97,7 @@ const authState = (state = initialState, action) => {
         hasError: true,
         token: null,
         name: null,
-        pendingAuthorization: false,
+        registered: false,
         isAdmin: false,
         statusText: 'You have been successfully logged out.'
       });

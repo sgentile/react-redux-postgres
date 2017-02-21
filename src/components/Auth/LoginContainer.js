@@ -26,6 +26,14 @@ class LoginContainer extends Component{
     }
   }
 
+  componentWillReceiveProps(nextProps){
+    if(nextProps.authState.registered) {
+      this.setState({
+        showRegistration: false
+      })
+    }
+  }
+
 
   toggleRegister() {
     this.setState({

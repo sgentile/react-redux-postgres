@@ -5,10 +5,18 @@ import { Field, reduxForm } from 'redux-form';
 
 const validate = (values) => {
   const errors = {};
+  if (!values.email) {
+    errors.email = 'Required'
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = 'Invalid email address'
+  }
+
   if (!values.name) {
     errors.name = 'Required'
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.name)) {
-    errors.name = 'Invalid email address'
+  }
+
+  if (!values.username) {
+    errors.username = 'Required'
   }
 
   if (!values.password) {
@@ -41,7 +49,9 @@ const RegisterView = (props) => {
         <Col md={12}>
           {registerUser &&
           <form onSubmit={handleSubmit(registerUser)}>
-            <Field name="name" component={renderField} type="text" label={'Email * :'} placeholder={'Email'}/>
+            <Field name="username" component={renderField} type="text" label={'User Name * :'} placeholder={'UserName'}/>
+            <Field name="name" component={renderField} type="text" label={'Name * :'} placeholder={'Name'}/>
+            <Field name="email" component={renderField} type="text" label={'Email * :'} placeholder={'Email'}/>
             <Field name="password" component={renderField} type="password" label={'Password * :'}
                    placeholder={'Password'}/>
             <Field name="confirmPassword" component={renderField} type="password" label={'Confirm Password * :'}

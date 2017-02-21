@@ -44,14 +44,15 @@ exports.register = (server, options, next) => {
         },
         {
             method: 'POST',
-            path: '/api/users',
+            path: '/api/register',
             config: {
-                auth: 'jwt',
+                auth: false,
                 tags: ['api'],
                 validate: {
                     payload: {
                         username: Joi.string().required(),
                         password: Joi.string().required(),
+                        confirmPassword: Joi.string(),
                         name: Joi.string().required(),
                         email: Joi.string().required()
                     }
@@ -60,13 +61,21 @@ exports.register = (server, options, next) => {
             handler: (request, reply) => {
                 const salt = bcrypt.genSaltSync(10);
                 const password = bcrypt.hashSync(request.payload.password, salt);
+                new User().query({
+                    where: {username:request.payload.username}, orWhere: {email:request.payload.email}
+                }).fetch().then((response) => {
+                    if(response) {
+                        reply(Boom.wrap(new Error('Invalid username or email'), 400));
+                    } else {
+                        return new User({
+                            username: request.payload.username,
+                            password,
+                            name: request.payload.name,
+                            email: request.payload.email
+                        }).save().then(reply, reject(reply));
+                    }
+                });
 
-                return new User({
-                    username: request.payload.username,
-                    password,
-                    name: request.payload.name,
-                    email: request.payload.email
-                }).save().then(reply, reject(reply));
             }
         },
         {

@@ -6,8 +6,9 @@ module.exports = {
   development: {
     client: 'postgres',
       connection: {
+          host: 'localhost',
           database: 'dbTodos',
-          port: '32768',
+          port: 32768,
           user:  'postgres',
           password: ''
       },
@@ -21,6 +22,26 @@ module.exports = {
       migrations: {
           tableName: 'knex_migrations'
       }
-  }
+  },
+    production: {
+        client: 'postgres',
+        connection: {
+            host: 'db',
+            database: 'dbTodos',
+            port: 5432,
+            user:  'postgres',
+            password: ''
+        },
+        seeds: {
+            directory: './fixtures'
+        },
+        pool: {
+            min: 0,
+            max: 1
+        },
+        migrations: {
+            tableName: 'knex_migrations'
+        }
+    }
 
 };

@@ -14,8 +14,8 @@ const server = new Hapi.Server({
     }
 });
 server.connection({
-    //host: '0.0.0.0',
-    host: 'localhost',
+    host: '0.0.0.0',
+    //host: 'localhost',
     port: 8000
 });
 server.register([require('hapi-auth-jwt2'), require('./auth'), require('inert'),  require('./models/user'), require('./models/todos')], (err) => {

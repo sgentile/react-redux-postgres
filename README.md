@@ -60,4 +60,14 @@ docker logs <container_id>
 docker exec -it <container_id> /bin/bash
 
 
+docker-compose build web
+docker-compose up web
+
+use http://localhost:8000 for docker
+
+running locally without docker:  npm run dev - you'll need a postgres instance
+
+
+
+
 

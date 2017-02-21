@@ -6,15 +6,6 @@ import thunk from 'redux-thunk';
 import {loadState, saveState, getToken} from '../utils/localStorage';
 import {loginUserSuccess} from '../actions/auth';
 
-// const initialState = {
-//     todosState: {
-//     todos: [
-//       {id: 1, name: 'Take out trash', completed: true},
-//       {id: 2, name: 'Wash dishes', completed: false}
-//     ]
-//   }
-// };
-
 const initialState = {
   todosState: {
     todos: []

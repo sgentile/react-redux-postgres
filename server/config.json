@@ -1,15 +1,5 @@
 {
-    "knex" : {
-        "client": "pg",
-        "connection":{
-            "host" : "localhost",
-            "port" : 32768,
-            "user" : "postgres",
-            "password": "",
-            "database" : "dbTodos"
-        }
-    },
     "privateKey": "NeverShareYourSecret",
     "tokenExpiration": 480,
-    "tokenIssuer": "http://localhost:8000"
+    "tokenIssuer": "http://0.0.0.0:8000"
 }

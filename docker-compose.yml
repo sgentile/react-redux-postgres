@@ -1,16 +1,24 @@
-db:
-    image: postgres
-    environment:
-        POSTGRES_DB: dbTodos
-    ports:
-        - "5432:5432"
-web:
-    build: .
-    ports:
-        - "8000:8000"
-    environment:
-        NODE_ENV: production
-    links:
-        - db
+version: '2.1'
+services:
+
+    web:
+        build: .
+        ports:
+            - "8000:8000"
+        environment:
+            NODE_ENV: production
+        depends_on:
+            db:
+                condition: service_healthy
+        links:
+            - db
+    db:
+        image: postgres
+        healthcheck:
+              test: "exit 0"
+        environment:
+            POSTGRES_DB: dbTodos
+        ports:
+            - "5432:5432"
 
 

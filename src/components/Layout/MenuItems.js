@@ -8,6 +8,8 @@ const MenuItems = ({currentRoutePath, authState}) => {
         {authState && authState.isAuthenticated &&
           <li className={currentRoutePath === '/todos' ? 'active' : ''}><Link to={'/todos'}><i className="fa fa-th-list"></i> <span>Todos</span></Link></li>
         }
+        <li className={currentRoutePath === '/maps' ? 'active' : ''}><Link to={'/maps'}><i className="fa fa-map"></i><span>Maps</span></Link></li>
+
       </ul>
     )
 };

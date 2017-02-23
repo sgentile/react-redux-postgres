@@ -107,7 +107,7 @@ const config = {
 
             {
                 test: /\.(png|jpg|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                loader: 'file-loader?name=[path][name].[hash:5].[ext]'
+                loader: 'file-loader?name=[path][name].[ext]'
             },
 
 

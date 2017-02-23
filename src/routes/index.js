@@ -5,11 +5,13 @@ import {Home} from '../components/Home';
 
 import LoginContainer from '../components/Auth/LoginContainer';
 import {TodosContainer} from '../components/Todos';
+import {MapsContainer} from '../components/Maps';
 
 export default (
     <Route path="/" component={AppContainer}>
         <IndexRoute component={Home}></IndexRoute>
         <Route path="/login" component={LoginContainer}/>
         <Route path="/todos" component={TodosContainer}/>
+        <Route path="/maps" component={MapsContainer}/>
     </Route>
 );

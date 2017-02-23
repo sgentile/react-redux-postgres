@@ -9,6 +9,8 @@ WORKDIR /usr/src/app
 COPY package.json /usr/src/app
 RUN npm install
 
+# Install knex to run the migrations
+RUN npm install knex -g
 
 # Bundle app source
 COPY . /usr/src/app

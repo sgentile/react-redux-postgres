@@ -20,7 +20,11 @@ module.exports = {
           max: 1
       },
       migrations: {
+          directory: './server/migrations',
           tableName: 'knex_migrations'
+      },
+      seeds: {
+          directory: './server/fixtures'
       }
   },
     production: {
@@ -40,7 +44,11 @@ module.exports = {
             max: 1
         },
         migrations: {
+            directory: './server/migrations',
             tableName: 'knex_migrations'
+        },
+        seeds: {
+            directory: './server/fixtures'
         }
     }
 

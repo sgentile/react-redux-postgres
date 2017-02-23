@@ -1,8 +1,8 @@
-# react-redux-starter
+# react-redux-postgres-starter
 
 ## Prerequisites
 
-[Node.js](http://nodejs.org/) >= v4 must be installed. (I use >= v6 with latest npm)
+[Node.js](http://nodejs.org/) >= v6 must be installed.
 
 ## Installation
 

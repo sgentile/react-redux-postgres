@@ -1,6 +1,7 @@
 const
     Hapi      = require('hapi'),
-    Path      = require('path');
+    Path      = require('path'),
+    bookshelf = require('./bookshelf').bookshelf;
 
 
 const server = new Hapi.Server({
@@ -46,8 +47,18 @@ server.register([require('hapi-auth-jwt2'), require('./auth'), require('inert'),
             throw err;
         }
 
-        console.log('server running at: ' + server.info.uri);
+        bookshelf.knex.migrate.latest().then(() => {
+           console.log('migrations runs');
+        })
+            .then(() => bookshelf.knex('users').count('id'))
+            .then((c) => parseInt(c[0].count, 10) ? null: bookshelf.knex.seed.run().then(() => console.info('seed run')))
+            .then(() => {
+                console.info('Running node ' + process.version);
+                console.info('Server running at:', server.info.uri, ', Environment:', process.env.NODE_ENV || 'local');
+            })
+
     });
+
 
 });
 

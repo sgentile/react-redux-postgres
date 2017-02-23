@@ -1,6 +1,12 @@
 #pull base image from stock node image
 FROM node
 
+# create a non-root user
+RUN groupadd -r nodejs \
+   && useradd -m -r -g nodejs nodejs
+
+USER nodejs
+
 # Create app directory
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
@@ -10,7 +16,7 @@ RUN npm install yarn -g
 
 # Install app dependencies
 COPY package.json /usr/src/app
-RUN yarn install
+RUN yarn install --production
 
 # Install knex to run the migrations
 RUN yarn install knex -g

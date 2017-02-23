@@ -22,9 +22,6 @@ module.exports = {
       migrations: {
           directory: './server/migrations',
           tableName: 'knex_migrations'
-      },
-      seeds: {
-          directory: './server/fixtures'
       }
   },
     production: {
@@ -35,9 +32,6 @@ module.exports = {
             port: 5432,
             user:  'postgres',
             password: ''
-        },
-        seeds: {
-            directory: './fixtures'
         },
         pool: {
             min: 0,

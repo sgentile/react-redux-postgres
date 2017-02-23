@@ -5,18 +5,21 @@ FROM node
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
+# Use Yarn instead of npm
+RUN npm install yarn -g
+
 # Install app dependencies
 COPY package.json /usr/src/app
-RUN npm install
+RUN yarn install
 
 # Install knex to run the migrations
-RUN npm install knex -g
+RUN yarn install knex -g
 
 # Bundle app source
 COPY . /usr/src/app
 
 # Build the build
-RUN npm run build
+RUN yarn run build
 
 # Remove the source - it's running under server/public...
 RUN rm -rf /usr/src/app/src
